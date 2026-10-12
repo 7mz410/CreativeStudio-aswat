@@ -7,13 +7,13 @@
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleDisplayName</key>
-  <string>SoundCraft</string>
+  <string>aswat</string>
   <key>CFBundleName</key>
-  <string>SoundCraft</string>
+  <string>aswat</string>
   <key>CFBundleExecutable</key>
   <string>SoundCraft</string>
   <key>CFBundleIdentifier</key>
-  <string>ai.storyteller.soundcraft</string>
+  <string>ps.creative.studio.aswat</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundlePackageType</key>
