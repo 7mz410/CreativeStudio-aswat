@@ -4,6 +4,8 @@
 //! executing commands. It can be replaced without touching anything below it.
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
 
+#[macro_use]
+pub mod i18n;
 pub mod control;
 pub mod credits;
 pub mod dialogs;
@@ -101,6 +103,9 @@ pub struct UiState {
     pub configurations: Vec<(String, Value)>,
     /// Appearance (`ui.theme`): dark by default, light or follow the system on request.
     pub theme: theme::ThemeMode,
+    /// Interface language (`ui.language`): English, or Arabic (laid out right to left).
+    #[serde(default)]
+    pub language: i18n::Language,
     /// The main window's size (logical points) and maximized state, and the interface scale, as
     /// the desktop app last saw them; it restores them at launch.
     pub window_size: [f32; 2],
@@ -158,6 +163,7 @@ impl Default for UiState {
             workspace_dir: String::new(),
             configurations: Vec::new(),
             theme: theme::ThemeMode::Dark,
+            language: i18n::Language::default(),
             window_size: [1600.0, 1000.0],
             window_maximized: false,
             ui_scale: 1.0,
@@ -435,7 +441,7 @@ impl SoundApp {
     fn start_recording(&mut self) {
         let armed = self.engine.session().tracks.iter().any(|t| t.mixer.record_arm);
         if !armed {
-            self.ui.status = "Record-enable a track first (the red button in its header).".into();
+            self.ui.status = tl!("Record-enable a track first (the red button in its header).").into();
             return;
         }
         self.ensure_input();
@@ -798,6 +804,11 @@ impl SoundApp {
                 ctx.request_repaint();
             }
         }
+        // Creative Studio: Arabic lays the interface out right to left (vendor/egui). Both switches
+        // are process-wide, so unit tests, which run in parallel, leave the RTL one off.
+        i18n::set_language(self.ui.language);
+        #[cfg(not(test))]
+        egui::set_rtl(self.ui.language.is_rtl());
         let light = theme::wants_light(ctx, self.ui.theme);
         if self.theme_applied != Some(light) || theme::is_light() != light {
             theme::apply(ctx, light);

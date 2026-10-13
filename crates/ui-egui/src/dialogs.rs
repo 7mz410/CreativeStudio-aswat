@@ -87,13 +87,13 @@ impl Dialogs {
             "file.bounce_mix" => {
                 Dialog::Bounce { path: format!("{home}/{name} Bounce.wav"), format: "wav".into(), bit_depth: "24".into(), normalize: false }
             }
-            "file.import_audio" => Dialog::PathPrompt { cmd: id.into(), title: "Import Audio".into(), path: home, key: "path".into() },
-            "file.import_midi" => Dialog::PathPrompt { cmd: id.into(), title: "Import MIDI".into(), path: home, key: "path".into() },
-            "session.open" => Dialog::PathPrompt { cmd: id.into(), title: "Open Session".into(), path: home, key: "path".into() },
+            "file.import_audio" => Dialog::PathPrompt { cmd: id.into(), title: tl!("Import Audio").into(), path: home, key: "path".into() },
+            "file.import_midi" => Dialog::PathPrompt { cmd: id.into(), title: tl!("Import MIDI").into(), path: home, key: "path".into() },
+            "session.open" => Dialog::PathPrompt { cmd: id.into(), title: tl!("Open Session").into(), path: home, key: "path".into() },
             "session.save" if e.path.is_some() => return false,
             "session.save" | "session.save_as" | "session.save_copy" => Dialog::PathPrompt {
                 cmd: if id == "session.save_copy" { id } else { "session.save_as" }.into(),
-                title: "Save Session As".into(),
+                title: tl!("Save Session As").into(),
                 // The browser has no folders: the name becomes the bundle file's name.
                 path: if home.is_empty() {
                     format!("{name}.{}", soundcraft_engine::io::BUNDLE_EXTENSION)
@@ -102,15 +102,15 @@ impl Dialogs {
                 },
                 key: "path".into(),
             },
-            "edit.repeat" => Dialog::Number { cmd: id.into(), title: "Repeat".into(), key: "count".into(), value: 2.0, suffix: "times".into() },
+            "edit.repeat" => Dialog::Number { cmd: id.into(), title: tl!("Repeat").into(), key: "count".into(), value: 2.0, suffix: "times".into() },
             "edit.shift" => {
-                Dialog::Number { cmd: id.into(), title: "Shift (seconds)".into(), key: "by_seconds".into(), value: 1.0, suffix: "s".into() }
+                Dialog::Number { cmd: id.into(), title: tl!("Shift (seconds)").into(), key: "by_seconds".into(), value: 1.0, suffix: "s".into() }
             }
             "event.transpose" => {
-                Dialog::Number { cmd: id.into(), title: "Transpose".into(), key: "semitones".into(), value: 12.0, suffix: "semitones".into() }
+                Dialog::Number { cmd: id.into(), title: tl!("Transpose").into(), key: "semitones".into(), value: 12.0, suffix: "semitones".into() }
             }
             "event.quantize" => {
-                Dialog::Number { cmd: id.into(), title: "Quantize strength".into(), key: "strength".into(), value: 100.0, suffix: "%".into() }
+                Dialog::Number { cmd: id.into(), title: tl!("Quantize strength").into(), key: "strength".into(), value: 100.0, suffix: "%".into() }
             }
             "edit.fades_create" => Dialog::Fades { shape: "equal power".into() },
             "edit.strip_silence" => Dialog::StripSilence { threshold: -48.0, min_ms: 50.0, pre_ms: 5.0, post_ms: 20.0 },
@@ -284,9 +284,9 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
             match &mut d {
                 Dialog::NewTracks { count, format, kind, timebase, name } => {
                     ui.horizontal(|ui| {
-                        ui.label("Create");
+                        ui.label(tl!("Create"));
                         ui.add(egui::DragValue::new(count).range(1..=128));
-                        ui.label("new");
+                        ui.label(tl!("new"));
                         egui::ComboBox::from_id_salt("nt_fmt").selected_text(format.as_str()).show_ui(ui, |ui| {
                             for f in soundcraft_model::ChannelFormat::ALL {
                                 ui.selectable_value(format, f.label().to_string(), f.label());
@@ -302,7 +302,7 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                                     }
                                 }
                             });
-                        ui.label("in");
+                        ui.label(tl!("in"));
                         egui::ComboBox::from_id_salt("nt_tb").selected_text(if timebase == "ticks" { "Ticks" } else { "Samples" }).show_ui(
                             ui,
                             |ui| {
@@ -310,7 +310,7 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                                 ui.selectable_value(timebase, "ticks".to_string(), "Ticks");
                             },
                         );
-                        ui.label("Name:");
+                        ui.label(tl!("Name:"));
                         ui.add(egui::TextEdit::singleline(name).desired_width(140.0));
                     });
                     if buttons(ui, "Create", enter) {
@@ -320,10 +320,10 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                 }
                 Dialog::NewSession { name, sample_rate, demo } => {
                     ui.horizontal(|ui| {
-                        ui.label("Name");
+                        ui.label(tl!("Name"));
                         ui.text_edit_singleline(name);
                     });
-                    egui::ComboBox::from_label("Sample Rate").selected_text(format!("{sample_rate} Hz")).show_ui(ui, |ui| {
+                    egui::ComboBox::from_label(tl!("Sample Rate")).selected_text(format!("{sample_rate} Hz")).show_ui(ui, |ui| {
                         for r in soundcraft_time::SampleRate::COMMON {
                             ui.selectable_value(sample_rate, r, format!("{r} Hz"));
                         }
@@ -338,16 +338,16 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                 }
                 Dialog::Bounce { path, format, bit_depth, normalize } => {
                     ui.horizontal(|ui| {
-                        ui.label("File");
+                        ui.label(tl!("File"));
                         ui.add(egui::TextEdit::singleline(path).desired_width(360.0));
                     });
                     ui.horizontal(|ui| {
-                        egui::ComboBox::from_label("Format").selected_text(format.to_uppercase()).show_ui(ui, |ui| {
+                        egui::ComboBox::from_label(tl!("Format")).selected_text(format.to_uppercase()).show_ui(ui, |ui| {
                             for f in ["wav", "aiff", "flac"] {
                                 ui.selectable_value(format, f.to_string(), f.to_uppercase());
                             }
                         });
-                        egui::ComboBox::from_label("Bit Depth").selected_text(format!("{bit_depth}-bit")).show_ui(ui, |ui| {
+                        egui::ComboBox::from_label(tl!("Bit Depth")).selected_text(format!("{bit_depth}-bit")).show_ui(ui, |ui| {
                             for b in ["16", "24", "32f"] {
                                 ui.selectable_value(bit_depth, b.to_string(), format!("{b}-bit"));
                             }
@@ -355,7 +355,7 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                     });
                     ui.checkbox(normalize, "Normalize to -0.1 dBFS");
                     ui.label(
-                        egui::RichText::new("Bounces the edit selection, or the whole session when nothing is selected.")
+                        egui::RichText::new(tl!("Bounces the edit selection, or the whole session when nothing is selected."))
                             .small()
                             .color(Tokens::current().text_dim),
                     );
@@ -392,21 +392,21 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                         && cmd != "session.save_as"
                         && cmd != "session.save_copy"
                         && key != "dir"
-                        && ui.button("Browse…").clicked()
+                        && ui.button(tl!("Browse…")).clicked()
                         && let Some(p) = pick(cmd, &[])
                     {
                         *path = p;
                     }
                     if let Some(pick) = &app.services.pick_folder
                         && key == "dir"
-                        && ui.button("Browse…").clicked()
+                        && ui.button(tl!("Browse…")).clicked()
                         && let Some(p) = pick(path)
                     {
                         *path = p;
                     }
                     if let Some(pick) = &app.services.pick_save
                         && (cmd == "session.save_as" || cmd == "session.save_copy")
-                        && ui.button("Browse…").clicked()
+                        && ui.button(tl!("Browse…")).clicked()
                         && let Some(p) = pick(cmd, path)
                     {
                         *path = p;
@@ -439,7 +439,7 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                     ui.horizontal(|ui| {
                         // Same limits the engine enforces (time crate `valid_bpm`).
                         ui.add(egui::DragValue::new(bpm).speed(0.1).range(5.0..=1000.0));
-                        ui.label("bpm");
+                        ui.label(tl!("bpm"));
                     });
                     if buttons(ui, "OK", enter) {
                         action = Some(tempo_change_action(*at, *bpm));
@@ -467,14 +467,14 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                 }
                 Dialog::Group { name, edit, mix, members } => {
                     ui.horizontal(|ui| {
-                        ui.label("Name");
+                        ui.label(tl!("Name"));
                         ui.text_edit_singleline(name);
                     });
                     ui.horizontal(|ui| {
                         ui.checkbox(edit, "Edit group");
                         ui.checkbox(mix, "Mix group");
                     });
-                    ui.label("Tracks");
+                    ui.label(tl!("Tracks"));
                     egui::ScrollArea::vertical().max_height(180.0).show(ui, |ui| {
                         for (_, n, on) in members.iter_mut() {
                             ui.checkbox(on, n.as_str());
@@ -486,12 +486,12 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                     }
                 }
                 Dialog::Session { frame_rate, bit_depth } => {
-                    egui::ComboBox::from_label("Timecode Rate").selected_text(frame_rate.as_str()).show_ui(ui, |ui| {
+                    egui::ComboBox::from_label(tl!("Timecode Rate")).selected_text(frame_rate.as_str()).show_ui(ui, |ui| {
                         for r in soundcraft_time::FrameRate::ALL {
                             ui.selectable_value(frame_rate, r.label().to_string(), r.label());
                         }
                     });
-                    egui::ComboBox::from_label("Bit Depth").selected_text(bit_depth.as_str()).show_ui(ui, |ui| {
+                    egui::ComboBox::from_label(tl!("Bit Depth")).selected_text(bit_depth.as_str()).show_ui(ui, |ui| {
                         for b in ["16", "24", "32f"] {
                             ui.selectable_value(bit_depth, b.to_string(), b);
                         }
@@ -502,13 +502,13 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                 }
                 Dialog::ScoreSetup { title, composer, bars_per_system, show_track_names } => {
                     egui::Grid::new("score_setup").num_columns(2).spacing(vec2(10.0, 8.0)).show(ui, |ui| {
-                        ui.label("Title");
+                        ui.label(tl!("Title"));
                         ui.text_edit_singleline(title);
                         ui.end_row();
-                        ui.label("Composer");
+                        ui.label(tl!("Composer"));
                         ui.text_edit_singleline(composer);
                         ui.end_row();
-                        ui.label("Bars per system");
+                        ui.label(tl!("Bars per system"));
                         ui.add(egui::DragValue::new(bars_per_system).range(1..=16));
                         ui.end_row();
                     });
@@ -537,7 +537,7 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
                         ui.label(format!("Save changes to “{name}” before closing?"));
                         ui.separator();
                         ui.horizontal(|ui| {
-                            if ui.button("Don't Save").clicked() {
+                            if ui.button(tl!("Don't Save")).clicked() {
                                 action = Some(then.clone());
                             }
                             if buttons(ui, "Save", enter) {
@@ -595,7 +595,7 @@ fn buttons(ui: &mut egui::Ui, ok: &str, enter: bool) -> bool {
     let mut pressed = enter;
     ui.separator();
     ui.horizontal(|ui| {
-        if ui.button("Cancel").clicked() {
+        if ui.button(tl!("Cancel")).clicked() {
             ui.ctx().memory_mut(|m| m.data.insert_temp(egui::Id::new("dlg_cancel"), true));
         }
         if ui.add(egui::Button::new(egui::RichText::new(ok).strong()).fill(Tokens::current().accent)).clicked() {
@@ -652,13 +652,13 @@ fn audiosuite_window(app: &mut SoundApp, ctx: &egui::Context) {
                     ui.add(egui::Slider::new(v, 0.25..=4.0).text("Speed"));
                 }
                 _ => {
-                    ui.label("No parameters.");
+                    ui.label(tl!("No parameters."));
                 }
             }
         }
         ui.ctx().memory_mut(|m| m.data.insert_temp(key, params.clone()));
-        ui.label(egui::RichText::new("Processes the selected clips and replaces them with rendered audio.").small());
-        if ui.button(egui::RichText::new("Render").strong()).clicked() {
+        ui.label(egui::RichText::new(tl!("Processes the selected clips and replaces them with rendered audio.")).small());
+        if ui.button(egui::RichText::new(tl!("Render")).strong()).clicked() {
             let p: serde_json::Map<String, Value> = params.iter().map(|(k, v)| (k.clone(), json!(v))).collect();
             let _ = app.run("audiosuite.process", json!({"process": process, "params": p}));
         }

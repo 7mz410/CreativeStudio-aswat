@@ -76,10 +76,16 @@ fn load(_: &[(&str, u32)], _: bool) -> Option<FontData> {
     None
 }
 
+/// Noto Sans Arabic (OFL-1.1, `assets/fonts/noto-sans-arabic`): the fallback for Arabic letters,
+/// which egui's default fonts lack. Appended after the system fonts, so Latin text is unchanged.
+const ARABIC: &[u8] = include_bytes!("../../../assets/fonts/noto-sans-arabic/NotoSansArabic.ttf");
+
 pub fn definitions() -> FontDefinitions {
     let mut fonts = FontDefinitions::default();
     let base: Vec<String> = fonts.families.get(&FontFamily::Proportional).cloned().unwrap_or_default();
+    fonts.font_data.insert("noto-arabic".into(), Arc::new(FontData::from_static(ARABIC)));
     let mut bold_family = base.clone();
+    bold_family.push("noto-arabic".into());
     if let Some(reg) = load(REGULAR, false) {
         fonts.font_data.insert("system-regular".into(), Arc::new(reg));
         if let Some(f) = fonts.families.get_mut(&FontFamily::Proportional) {
@@ -93,6 +99,9 @@ pub fn definitions() -> FontDefinitions {
         bold_family.insert(0, "system-regular".into());
     }
     fonts.families.insert(FontFamily::Name("bold".into()), bold_family);
+    if let Some(f) = fonts.families.get_mut(&FontFamily::Proportional) {
+        f.push("noto-arabic".into());
+    }
     fonts
 }
 

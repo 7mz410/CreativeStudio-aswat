@@ -20,7 +20,7 @@ are bundled.
 
 ## Fonts
 
-SoundCraft bundles no font files. It uses the default fonts shipped inside the `egui` crate
+SoundCraft bundles one font file, for the Arabic interface: Noto Sans Arabic (OFL-1.1, see `assets/fonts/noto-sans-arabic/`). It uses the default fonts shipped inside the `egui` crate
 (Ubuntu-Light: Ubuntu Font Licence 1.0; Hack: MIT; Noto Emoji: OFL-1.1; emoji-icon-font: OFL-1.1/MIT)
 and, at runtime, the operating system's own UI fonts when available (never redistributed).
 
@@ -36,4 +36,5 @@ and, at runtime, the operating system's own UI fonts when available (never redis
 | `assets/app-icon/soundcraft.icns` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
 | `assets/app-icon/soundcraft.ico` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
 | `assets/app-icon/hicolor/` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/fonts/noto-sans-arabic/NotoSansArabic.ttf`, `OFL.txt` | The Noto Project Authors (Google Fonts) | [google/fonts@7085eb8](https://github.com/google/fonts/tree/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/notosansarabic), byte-identical to `craft-fonts` | OFL-1.1 (`assets/fonts/noto-sans-arabic/OFL.txt`) |
 | `docs/images/` | SoundCraft contributors | screenshots of SoundCraft rendered from the synthesised demo session | MIT OR Apache-2.0 |

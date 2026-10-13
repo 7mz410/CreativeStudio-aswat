@@ -35,9 +35,9 @@ fn video(app: &mut SoundApp, ctx: &egui::Context) {
         .clamp(0.2, 5.0);
     let mut open = true;
     let mut burn = app.ui.video_burn_in;
-    egui::Window::new("Video").open(&mut open).default_size(vec2(480.0, 480.0 / aspect + 28.0)).resizable(true).show(ctx, |ui| {
+    egui::Window::new(tl!("Video")).open(&mut open).default_size(vec2(480.0, 480.0 / aspect + 28.0)).resizable(true).show(ctx, |ui| {
         ui.horizontal(|ui| {
-            ui.checkbox(&mut burn, "Timecode burn-in");
+            ui.checkbox(&mut burn, tl!("Timecode burn-in"));
             let text = match &pic {
                 Some((k, ..)) => match app.video.info(*k) {
                     Some(Ok(i)) => format!("{}x{}  {:.3} fps  {}", i.width, i.height, i.frame_rate, i.codec_detail),
@@ -105,7 +105,7 @@ fn universe(app: &mut SoundApp, ctx: &egui::Context) {
     let pos = app.position();
     let mut open = true;
     let mut locate = None;
-    egui::Window::new("Video Universe").open(&mut open).default_size(vec2(640.0, 90.0)).resizable(true).show(ctx, |ui| {
+    egui::Window::new(tl!("Video Universe")).open(&mut open).default_size(vec2(640.0, 90.0)).resizable(true).show(ctx, |ui| {
         let avail = ui.available_rect_before_wrap();
         let (r, resp) = ui.allocate_exact_size(vec2(avail.width().max(120.0), 64.0), Sense::click_and_drag());
         let painter = ui.painter_at(r);
@@ -114,7 +114,7 @@ fn universe(app: &mut SoundApp, ctx: &egui::Context) {
         let x_at = |at: i64| r.min.x + r.width() * (at as f32 / end as f32);
         let on = online(&s);
         let Some(track) = s.tracks.iter().find(|t| t.kind == TrackKind::Video) else {
-            painter.text(r.center(), Align2::CENTER_CENTER, "No Video track — File › Import › Video…", regular(11.0), Color32::from_gray(150));
+            painter.text(r.center(), Align2::CENTER_CENTER, tl!("No Video track — File › Import › Video…"), regular(11.0), Color32::from_gray(150));
             return;
         };
         let ppp = ctx.pixels_per_point();

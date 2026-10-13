@@ -1,0 +1,707 @@
+# Arabic (ar) catalog: one row per English string, `English<TAB>Arabic`. Keys are the English text in code
+# (`tl!("…")` literals and the menu catalog, crates/engine/catalog/menus.txt). Arabic is written in logical
+# order here; i18n/bidi.rs puts the right-to-left words in visual order when the catalog loads.
+# Product, format, plugin and standard names (MIDI, VST3, HEAT, Melodyne…) stay in Latin letters.
+ dB	 ديسيبل
+ s	 ث
++ Marker	+ علامة
++ Selection	+ تحديد
+0 dB	0 ديسيبل
+1	1
+1st Order Ambisonics	أمبيسونكس من الرتبة الأولى
+2	2
+2nd Order Ambisonics	أمبيسونكس من الرتبة الثانية
+3	3
+3rd Order Ambisonics	أمبيسونكس من الرتبة الثالثة
+4	4
+4th Order Ambisonics	أمبيسونكس من الرتبة الرابعة
+5	5
+5.0	5.0
+5.0.2	5.0.2
+5.0.4	5.0.4
+5.1	5.1
+5.1.2	5.1.2
+5.1.4	5.1.4
+512 samples (resampled to the device rate when they differ)	512 عينة (تُعاد معاينتها إلى معدل الجهاز عند الاختلاف)
+5th Order Ambisonics	أمبيسونكس من الرتبة الخامسة
+6.0	6.0
+6.1	6.1
+6th Order Ambisonics	أمبيسونكس من الرتبة السادسة
+7.0	7.0
+7.0 SDDS	7.0 SDDS
+7.0.2	7.0.2
+7.0.4	7.0.4
+7.0.6	7.0.6
+7.1	7.1
+7.1 SDDS	7.1 SDDS
+7.1.2	7.1.2
+7.1.4	7.1.4
+7.1.6	7.1.6
+7th Order Ambisonics	أمبيسونكس من الرتبة السابعة
+9.0.4	9.0.4
+9.0.6	9.0.6
+9.1.4	9.1.4
+9.1.6	9.1.6
+<ALL>	<الكل>
+<factory default>	<الافتراضي من المصنع>
+AFL (After Fader Listen)	AFL (الاستماع بعد المنزلق)
+ARA Note Overlay	تراكب نوتات ARA
+ARA Plugins	إضافات ARA
+Ableton Link	Ableton Link
+About aswat	حول أصوات
+Activate HEAT	تفعيل HEAT
+Add Key Change...	إضافة تغيير السلم...
+After Playback	بعد التشغيل
+All	الكل
+All Automation	كل الأتمتة
+All MIDI Notes Off	إيقاف كل نوتات MIDI
+All Marker Rulers	كل مساطر العلامات
+All audio clips have loaded media within source bounds.	جميع المقاطع الصوتية تحتوي على وسائط محمّلة ضمن حدود المصدر.
+An open-source digital audio workstation, part of the Creative Studio suite.	محطة عمل صوتية رقمية مفتوحة المصدر، جزء من حزمة Creative Studio.
+Analyses the edit selection on the selected tracks.	يحلّل تحديد التحرير على المسارات المحددة.
+Analyze	تحليل
+Appearance	المظهر
+Applies across the edit selection (constant: at the insertion point; scale: factor = end / start; stretch: factor = start / end).	يُطبَّق على كامل تحديد التحرير (ثابت: عند نقطة الإدراج؛ مقياس: العامل = النهاية ÷ البداية؛ تمديد: العامل = البداية ÷ النهاية).
+Applies to the selected MIDI clips (or those under the selection).	يُطبَّق على مقاطع MIDI المحددة (أو الواقعة ضمن التحديد).
+Apply	تطبيق
+Apply to selected tracks (Shift: selected clips)	تطبيق على المسارات المحددة (Shift: المقاطع المحددة)
+Arrange	ترتيب
+Arrange Panel	ترتيب اللوحات
+At Selection	عند التحديد
+At Transients	عند الطرقات
+Audio Units	Audio Units
+Audio as MIDI	الصوت كـ MIDI
+Audio...	صوت...
+AudioSuite	AudioSuite
+Auto-Spot Clips	التموضع التلقائي للمقاطع
+Auto-Update Active Configuration	التحديث التلقائي للإعداد النشط
+Auto-update configuration	التحديث التلقائي للإعداد
+Automation	الأتمتة
+Automation Follows Edit	الأتمتة تتبع التحرير
+BF-76	BF-76
+Bars per system	عدد الأقسام في كل سطر
+Bars|Beats	أقسام|نبضات
+Beat Detective	كاشف الإيقاع
+Big Counter	العداد الكبير
+Bit Depth	عمق البت
+Bounce Mix...	تصدير المزيج...
+Bounce Mix…	تصدير المزيج…
+Bounce...	تصدير...
+Bounces the edit selection, or the whole session when nothing is selected.	يصدّر تحديد التحرير، أو الجلسة كاملة إن لم يكن هناك تحديد.
+Bring to Front	إحضار للأمام
+Browse…	استعراض…
+Built on SoundCraft by the ArtCraft team.	مبنية على SoundCraft من فريق ArtCraft.
+Built-in	مدمج
+Bus	ناقل
+Busses	النواقل
+Bypass	تجاوز
+Bypass Inserts	تجاوز الإدراجات
+C major	دو ماجور
+CLAP	CLAP
+Calibration Mode	وضع المعايرة
+Can't Redo	لا يمكن الإعادة
+Can't Undo	لا يمكن التراجع
+Cancel	إلغاء
+Capture...	التقاط...
+Cascade	تتالٍ
+Center Playhead	توسيط رأس التشغيل
+Change Duration...	تغيير المدة...
+Change Edit to Match Timeline	تغيير التحرير ليطابق الخط الزمني
+Change Meter...	تغيير الميزان...
+Change Timeline to Match Edit	تغيير الخط الزمني ليطابق التحرير
+Change Track Width	تغيير عرض المسار
+Change Velocity...	تغيير الشدة...
+Channel Name	اسم القناة
+Channel Strip	شريط القناة
+Checks loaded media only, not files on disk, signal levels, plugins or routing.	يفحص الوسائط المحمّلة فقط، لا الملفات على القرص ولا مستويات الإشارة ولا الإضافات ولا التوجيه.
+Chord Symbols	رموز الكوردات
+Clear	مسح
+Clear All Clip Indicators	مسح كل مؤشرات المقاطع
+Clear Special	مسح خاص
+Clear Trim Automation	مسح أتمتة القص
+Clear…	مسح…
+Click	النقر
+Click a take (or the selection) to promote it to the main playlist	انقر تسجيلاً بديلاً (أو التحديد) لترقيته إلى قائمة المقاطع الرئيسية
+Click keys to step-enter notes into the selected MIDI clip at the insertion point.	انقر المفاتيح لإدخال النوتات خطوةً خطوة في مقطع MIDI المحدد عند نقطة الإدراج.
+Click/Countoff...	النقر/العدّ التمهيدي...
+Click: open instrument · right-click: change	نقرة: فتح الآلة · نقرة يمنى: تغيير
+Click: open plugin · right-click: change	نقرة: فتح الإضافة · نقرة يمنى: تغيير
+Clip	المقطع
+Clip Effects	تأثيرات المقطع
+Clip Effects Status	حالة تأثيرات المقطع
+Clip Gain	كسب المقطع
+Clip Gain Info	معلومات كسب المقطع
+Clip Gain Line	خط كسب المقطع
+Clip Groups...	مجموعات المقاطع...
+Clip List	قائمة المقاطع
+Close All Workspaces	إغلاق كل مساحات العمل
+Close Plugin Editor	إغلاق محرّر الإضافة
+Close Session	إغلاق الجلسة
+Close Window	إغلاق النافذة
+Coalesce Clip Gain to Volume Automation	دمج كسب المقطع في أتمتة الصوت
+Coalesce Pan Guide Automation	دمج أتمتة دليل الموازنة
+Coalesce Trim Automation	دمج أتمتة القص
+Coalesce VCA Controller Automation	دمج أتمتة متحكم VCA
+Coalesce Volume Automation to Clip Gain	دمج أتمتة الصوت في كسب المقطع
+Collaboration	التعاون
+Color Palette	لوحة الألوان
+Comments	التعليقات
+Commit...	اعتماد...
+Composer	الملحّن
+Composite Playlist	قائمة مركبة
+Configurations	الإعدادات
+Conform to Tempo	المطابقة مع التيمبو
+Consolidate	دمج الملفات
+Constant...	ثابت...
+Continuous	مستمر
+Convert Aux to Routing Folder	تحويل الناقل المساعد إلى مجلد توجيه
+Convert Clip Gain to Volume Automation	تحويل كسب المقطع إلى أتمتة الصوت
+Convert Volume Automation to Clip Gain	تحويل أتمتة الصوت إلى كسب المقطع
+Copy	نسخ
+Copy Selection to...	نسخ التحديد إلى...
+Copy Special	نسخ خاص
+Copy to Send...	نسخ إلى الإرسال...
+Copy/Move Indicators	مؤشرات النسخ/النقل
+Count Off	العدّ التمهيدي
+Counters	العدّادات
+Create	إنشاء
+Create Click Track	إنشاء مسار النقر
+Create...	إنشاء...
+Current Feet+Frames Position...	الموضع الحالي بالقدم+الإطار...
+Current Time	الوقت الحالي
+Current Timecode Position...	موضع الرمز الزمني الحالي...
+Curve	المنحنى
+Cut	قص
+Cut Special	قص خاص
+Cut Time...	قص الزمن...
+D-Verb	D-Verb
+DC Offset Removal	إزالة انحياز DC
+DESTINATION	الوجهة
+Dark	داكن
+Dashboard...	لوحة المعلومات...
+Default	الافتراضي
+Delay	التأخير
+Delay Compensation	تعويض التأخير
+Delay compensation	تعويض التأخير
+Delete	حذف
+Delete Group	حذف المجموعة
+Delete Unused...	حذف غير المستخدم...
+Designate as Target Playlist	تعيين كقائمة هدف
+Destructive Record	التسجيل الإتلافي
+DestructivePunch	DestructivePunch
+Device rate	معدل الجهاز
+Disk Allocation...	تخصيص القرص...
+Disk Usage	استخدام القرص
+Display on All Channels	العرض على كل القنوات
+Don't Save	لا تحفظ
+Double Edit	تحرير مزدوج
+Double-click to import audio/MIDI at the insertion point or open a session.	انقر مرتين لاستيراد الصوت أو MIDI عند نقطة الإدراج، أو لفتح جلسة.
+Dropped Video Frame Indicator	مؤشر إطارات الفيديو المفقودة
+Dual-licensed MIT OR Apache-2.0. Made with Rust and egui.	مرخّص بترخيصين: MIT أو Apache-2.0. مبني بلغة Rust وegui.
+Duplicate	تكرار
+Duplicate Dolby Atmos Plugin Automation to Pan Automation	تكرار أتمتة إضافة Dolby Atmos إلى أتمتة الموازنة
+Duplicate Pan Automation to Dolby Atmos Plugin Automation	تكرار أتمتة الموازنة إلى أتمتة إضافة Dolby Atmos
+Duplicate and Extend Edit	تكرار وتمديد التحرير
+Duplicate of Main Playlist	نسخة من القائمة الرئيسية
+Duplicate...	تكرار...
+Dyn3 Compressor/Limiter	Dyn3 ضاغط/محدِّد
+Dyn3 De-Esser	Dyn3 مزيل الصفير
+Dyn3 Expander/Gate	Dyn3 موسّع/بوابة
+Dynamic Transport	التشغيل الديناميكي
+Dynamics	الديناميكيات
+EQ	المعادل
+EQ Curve	منحنى المعادل
+EQ3 1-Band	EQ3 نطاق واحد
+EQ3 7-Band	EQ3 سبعة نطاقات
+Edit	تحرير
+Edit Lock/Unlock	قفل/فتح التحرير
+Edit Window Scrolling	تمرير نافذة التحرير
+Edit Window Views	عروض نافذة التحرير
+Edit/Tool Mode Keyboard Lock	قفل لوحة المفاتيح لوضع التحرير/الأداة
+Elastic Properties	خصائص المرونة
+Eleven Lite	Eleven Lite
+Enabled parameters	المعاملات المفعّلة
+End	النهاية
+End to Fill Selection	النهاية لملء التحديد
+End to Insertion	النهاية إلى نقطة الإدراج
+Event	الحدث
+Expanded	موسّع
+Expanded Sends	الإرسالات الموسّعة
+Export	تصدير
+Extend Edit Down	تمديد التحرير للأسفل
+Extend Edit Down to Members	تمديد التحرير للأسفل إلى الأعضاء
+Extend Edit Selection To Marker Lane Above	تمديد تحديد التحرير إلى مسار العلامات أعلاه
+Extend Edit Selection To Marker Lane Below	تمديد تحديد التحرير إلى مسار العلامات أدناه
+Extend Edit Up	تمديد التحرير للأعلى
+Extend Edit Up to Members	تمديد التحرير للأعلى إلى الأعضاء
+External Timecode Offset...	إزاحة الرمز الزمني الخارجي...
+Extract Chords from Selection	استخراج الكوردات من التحديد
+Extract MIDI to New Track	استخراج MIDI إلى مسار جديد
+FX	FX
+Fade to End	تلاشٍ حتى النهاية
+Fade to Start	تلاشٍ من البداية
+Fades	التلاشيات
+Feet+Frames	القدم+الإطار
+File	ملف
+Find Talent	البحث عن الفنانين
+Flatten Performance...	تسوية الأداء...
+Folder Lines	خطوط المجلد
+Format	التنسيق
+Freeze	تجميد
+Gain	الكسب
+Get Info...	معلومات...
+Glide Pan Only	انزلاق الموازنة فقط
+Glide to All Enabled	انزلاق إلى كل المفعّلة
+Glide to Current	انزلاق إلى الحالي
+Grid	الشبكة
+Group	المجموعة
+Group...	مجموعة...
+HEAT	HEAT
+Halve Edit	تقسيم التحرير إلى نصفين
+Hardware...	الأجهزة...
+Harmonic	توافقي
+Heal Separation	رأب الفاصل
+Hide All Floating Windows	إخفاء كل النوافذ العائمة
+I/O	الإدخال/الإخراج
+I/O Setup	إعداد الإدخال والإخراج
+I/O...	الإدخال/الإخراج...
+Identify Beat...	تحديد الإيقاع...
+Identify Beat: selection is	تحديد الإيقاع: التحديد
+Identify Sync Point	تحديد نقطة المزامنة
+Import	استيراد
+Import Audio	استيراد صوت
+Import MIDI	استيراد MIDI
+Includes alternate takes and muted clips. Refresh after editing.	يتضمن التسجيلات البديلة والمقاطع المكتومة. حدّث بعد التحرير.
+Input Quantize...	تكميم الإدخال...
+Input device	جهاز الإدخال
+Insert Silence	إدراج صمت
+Insert Time...	إدراج زمن...
+Insertion Follows Playback	نقطة الإدراج تتبع التشغيل
+Inserts A-E	الإدراجات A-E
+Inserts F-J	الإدراجات F-J
+Instruments	الآلات
+Interface scale	حجم الواجهة
+Invert	قلب
+Key Signature	السلم الموسيقي
+Key Signature Staff	سطر السلم الموسيقي
+Keyboard Shortcuts	اختصارات لوحة المفاتيح
+Keyboard Shortcuts...	اختصارات لوحة المفاتيح...
+LCR	LCR
+LCRS	LCRS
+Language	اللغة
+Latch	المزلاج
+Layered Editing	التحرير بالطبقات
+Learn	التعلم
+Legato	ليغاتو
+Light	فاتح
+Linear...	خطي...
+Link Timeline and Edit Selection	ربط الخط الزمني وتحديد التحرير
+Link Track and Edit Selection	ربط المسار وتحديد التحرير
+Lo-Fi	Lo-Fi
+Load and edit sounds in the plugin's own editor.	حمّل الأصوات وحرّرها في محرّر الإضافة نفسها.
+Loop Playback	تشغيل بالحلقة
+Loop Record	تسجيل بالحلقة
+Loop...	حلقة...
+Low Latency Monitoring	مراقبة منخفضة التأخير
+Lower Dock	الشريط السفلي
+MIDI	MIDI
+MIDI Beat Clock...	ساعة نبضات MIDI...
+MIDI Controls	عناصر تحكم MIDI
+MIDI EDITOR	محرّر MIDI
+MIDI Editor	محرّر MIDI
+MIDI Editors	محررات MIDI
+MIDI Editors to Back	محررات MIDI إلى الخلف
+MIDI Editors to Front	محررات MIDI إلى الأمام
+MIDI Event List	قائمة أحداث MIDI
+MIDI Input Devices...	أجهزة إدخال MIDI...
+MIDI Input Display	عرض إدخال MIDI
+MIDI Input Filter...	مرشّح إدخال MIDI...
+MIDI Keyboard	لوحة MIDI المفاتيح
+MIDI Live Mode	وضع MIDI المباشر
+MIDI Operations	عمليات MIDI
+MIDI Operations Window	نافذة عمليات MIDI
+MIDI Real-Time Properties	خصائص MIDI الفورية
+MIDI Studio...	استوديو MIDI...
+MIDI Thru	تمرير MIDI
+MIDI Track Offsets	إزاحات مسار MIDI
+MIDI in: all	إدخال MIDI: الكل
+MIDI...	MIDI...
+Machine Track Arming	تهيئة المسار الآلي
+Machine Track Arming Profiles...	ملفات تهيئة المسار الآلي...
+Main Counter	العداد الرئيسي
+Main output	الإخراج الرئيسي
+Make Inactive	تعطيل
+Marker Controls	عناصر تحكم العلامات
+Marker Displays	عروض العلامات
+Marker Target Follows First Selected Track	هدف العلامة يتبع أول مسار محدد
+Markers	العلامات
+Markers 2	العلامات 2
+Markers 3	العلامات 3
+Markers 4	العلامات 4
+Markers 5	العلامات 5
+Markers Follow Edit	العلامات تتبع التحرير
+Maxim	Maxim
+Melodyne	Melodyne
+Memory Locations	مواضع الذاكرة
+Merge MIDI	دمج MIDI
+Merge Markers	دمج العلامات
+Messages	الرسائل
+Metadata Inspector	مفتش البيانات الوصفية
+Meter	الميزان
+Meters and Faders	المقاييس والمنزلقات
+Mic Preamps	مضخّمات الميكروفون
+Min:Secs	دقائق:ثوانٍ
+Minimal	أدنى
+Mirrored MIDI Editing	تحرير MIDI المنعكس
+Mix	المزج
+Mix Window View	عرض نافذة المزج
+Mix Window Views	عروض نافذة المزج
+Mix block size	حجم كتلة المزج
+Mod Delay III	Mod Delay III
+Modulation	التعديل
+Momentary	لحظي
+Mono	أحادي
+Move Edit Left	نقل التحرير لليسار
+Move Edit Right	نقل التحرير لليمين
+Move Edit Selection To Marker Lane Above	نقل تحديد التحرير إلى مسار العلامات أعلاه
+Move Edit Selection To Marker Lane Below	نقل تحديد التحرير إلى مسار العلامات أدناه
+Move Selection to...	نقل التحديد إلى...
+Move Song Start...	نقل بداية المقطوعة...
+Move to New Folder...	نقل إلى مجلد جديد...
+Mute	كتم
+Mute Sends	كتم الإرسالات
+Name	الاسم
+Name:	الاسم:
+Narrow Mix	مزج ضيق
+New Bus	ناقل جديد
+New Configuration	إعداد جديد
+New Configuration...	إعداد جديد...
+New Configuration…	إعداد جديد…
+New Group…	مجموعة جديدة…
+New Playlist	قائمة مقاطع جديدة
+New Tracks…	مسارات جديدة…
+New Workspace	مساحة عمل جديدة
+New...	جديد...
+Next	التالي
+No Scrolling	بلا تمرير
+No Time	بلا زمن
+No Video track — File › Import › Video…	لا يوجد مسار فيديو — ملف › استيراد › فيديو…
+No background tasks are running.	لا توجد مهام خلفية قيد التشغيل.
+No contributor data was built into this copy.	لم تُدمج بيانات المساهمين في هذه النسخة.
+No model credits were built into this copy.	لم تُدمج أرصدة النماذج في هذه النسخة.
+No object tracks. Use the Object view in the Mix window to route tracks as objects.	لا توجد مسارات كائنات. استخدم عرض الكائن في نافذة المزج لتوجيه المسارات ككائنات.
+No parameters.	لا توجد معاملات.
+Non-destructive, applied at playback to the selected MIDI tracks.	غير إتلافي، يُطبَّق عند التشغيل على مسارات MIDI المحددة.
+None	لا شيء
+Normalize	تطبيع
+Notation view of the MIDI clip; edit notes in the MIDI Editor or Event List.	عرض النوتات لمقطع MIDI؛ حرّر النوتات في محرّر MIDI أو في قائمة الأحداث.
+Nudge	الإزاحة السريعة
+Object	الكائن
+On Grid	على الشبكة
+Open	فتح
+Open Plugin Editor	فتح محرّر الإضافة
+Open Session	فتح جلسة
+Operation	العملية
+Options	الخيارات
+Original Time Stamp	الطابع الزمني الأصلي
+Other	أخرى
+Other Displays	شاشات أخرى
+Outlines	المخططات
+Output Meters	مقاييس الإخراج
+Output device	جهاز الإخراج
+Outputs	المخارج
+Overlap Shadows	ظلال التداخل
+Overlapped Crossfades	تلاشيات متقاطعة متداخلة
+Overwrite Indicator	مؤشر الكتابة فوق
+PFL (Pre Fader Listen)	PFL (الاستماع قبل المنزلق)
+Page	الصفحة
+Pan Automation	أتمتة الموازنة
+Parabolic...	قطعي...
+Parent folder	المجلد الأم
+Paste	لصق
+Paste Special	لصق خاص
+Peak	الذروة
+Peripherals...	الأجهزة الطرفية...
+Pinned Tracks	المسارات المثبّتة
+Pitch II	Pitch II
+Pitch Shift	تحويل الطبقة
+Pitch Shift Legacy	تحويل الطبقة (الإصدار القديم)
+Place on New Track	ضعه على مسار جديد
+Place on Selected Track	ضعه على المسار المحدد
+Play (Space)	تشغيل (مسافة)
+Play Edit	تشغيل التحرير
+Play Timeline	تشغيل الخط الزمني
+Playback Engine	محرّك التشغيل
+Playback Engine...	محرّك التشغيل...
+Plugin Automation	أتمتة الإضافة
+Post-roll	ما بعد التشغيل
+Power	الطاقة
+Pre-Fader Metering	قياس قبل المنزلق
+Pre-fader	قبل المنزلق
+Pre-roll	ما قبل التشغيل
+Pre/Post-Roll	ما قبل/بعد التشغيل
+Preferences...	التفضيلات...
+Prepare DPE Tracks	تجهيز مسارات DPE
+Presets ▾	الإعدادات المسبقة ▾
+Previous	السابق
+Print Score...	طباعة النوتة...
+Pro Tools Projects	مشاريع Pro Tools
+Pro Tools Search	بحث Pro Tools
+Processes selected clips offline	يعالج المقاطع المحددة دون اتصال
+Processes the selected clips and replaces them with rendered audio.	يعالج المقاطع المحددة ويستبدلها بصوت مُصيَّر.
+Processing State	حالة المعالجة
+Project...	المشروع...
+Quad	رباعي
+Quantize	التكميم
+Quantize strength	قوة التكميم
+Quantize to Grid	تكميم إلى الشبكة
+Quantize to the grid	تكميم إلى الشبكة
+Quantize...	تكميم...
+QuickPunch	QuickPunch
+Quit	إنهاء
+Rating	التقييم
+Real-Time Properties	الخصائص الفورية
+Recall	استرجاع
+Reconnect audio device	إعادة توصيل جهاز الصوت
+Record (Cmd+Space)	تسجيل (Cmd+مسافة)
+Record-enable a track first (the red button in its header).	فعّل التسجيل على مسار أولاً (الزر الأحمر في رأسه).
+Recti-Fi	Recti-Fi
+Rectified	مُقوَّم
+Redo	إعادة
+Reduce motion	تقليل الحركة
+Refresh Report	تحديث التقرير
+Regroup	إعادة التجميع
+Remove Duplicate Notes	إزالة النوتات المكررة
+Remove Edit from Bottom	إزالة التحرير من الأسفل
+Remove Edit from Top	إزالة التحرير من الأعلى
+Remove Pitch Shift	إزالة تحويل الطبقة
+Remove Warp	إزالة الالتواء
+Remove send	إزالة الإرسال
+Rename bus…	إعادة تسمية الناقل…
+Rename...	إعادة تسمية...
+Render	تصيير
+Renderer	المُصيِّر
+Renders, bounces and AudioSuite processes run to completion before returning.	يكتمل التصيير والتصدير وعمليات AudioSuite قبل العودة.
+Renumber Bars...	إعادة ترقيم الأقسام...
+Repeat	تكرار
+Repeat to Fill Selection	تكرار لملء التحديد
+Repeat...	تكرار...
+Reset	إعادة الضبط
+Reset Panel Layout	إعادة ضبط تخطيط اللوحات
+Restore Last Selection	استعادة آخر تحديد
+Restore Performance...	استعادة الأداء...
+Retrospective Record	التسجيل الاسترجاعي
+Reverb	الصدى
+Reverse	عكس
+Reverse the order	اعكس الترتيب
+Revert Session to Saved...	استعادة الجلسة المحفوظة...
+Route as an immersive object or to the bed	وجّه ككائن غامر أو إلى القاعدة الصوتية
+Ruler Lane Color	لون مسار المساطر
+Ruler Lines	خطوط المسطرة
+Rulers	المساطر
+S-Curve...	منحنى S...
+SIP (Solo In Place)	SIP (منفرد في مكانه)
+Sample Rate	معدل العينات
+Samples	العينات
+SansAmp PSA-1	SansAmp PSA-1
+Save	حفظ
+Save As Template...	حفظ كقالب...
+Save Session	حفظ الجلسة
+Save Session As	حفظ الجلسة باسم
+Save Session As...	حفظ الجلسة باسم...
+Save Session Copy In...	حفظ نسخة من الجلسة في...
+Save Track Preset...	حفظ إعداد المسار...
+Scale...	مقياس...
+Scene And Take	المشهد والتسجيل
+Sci-Fi	Sci-Fi
+Score Editor	محرّر النوتة
+Score Setup...	إعداد النوتة...
+Scroll to Track...	تمرير إلى المسار...
+Search	بحث
+Search buses…	ابحث في النواقل…
+Search commands…	ابحث في الأوامر…
+Select All	تحديد الكل
+Select Tracks in Group	حدّد المسارات في المجموعة
+Select a MIDI clip (or a MIDI track) to edit its notes.	حدّد مقطع MIDI (أو مسار MIDI) لتحرير نوتاته.
+Select a MIDI clip or MIDI track.	حدّد مقطع MIDI أو مسار MIDI.
+Select a MIDI clip.	حدّد مقطع MIDI.
+Select an audio clip.	حدّد مقطعاً صوتياً.
+Select/Split Notes...	تحديد/تقسيم النوتات...
+Selected Tracks as New AAF/OMF...	المسارات المحددة كجلسة AAF/OMF جديدة...
+Selected Tracks as New Media Composer Compatible Session...	المسارات المحددة كجلسة جديدة متوافقة مع Media Composer...
+Selected Tracks as New Session...	المسارات المحددة كجلسة جديدة...
+Selection	التحديد
+Send A	الإرسال A
+Send B	الإرسال B
+Send C	الإرسال C
+Send D	الإرسال D
+Send E	الإرسال E
+Send F	الإرسال F
+Send G	الإرسال G
+Send H	الإرسال H
+Send I	الإرسال I
+Send J	الإرسال J
+Send To...	إرسال إلى...
+Send to Back	إرسال إلى الخلف
+Sends A-E	الإرسالات A-E
+Sends F-J	الإرسالات F-J
+Separate	فصل
+Separate clips at detected beats	افصل المقاطع عند النبضات المكتشفة
+Session	الجلسة
+Session Audio Health	سلامة صوت الجلسة
+Session Data...	بيانات الجلسة...
+Session Info	معلومات الجلسة
+Session Info as Text...	معلومات الجلسة كنص...
+Session comments	تعليقات الجلسة
+Session rate	معدل الجلسة
+Session...	الجلسة...
+Set Record Tracks to Input Only	ضبط مسارات التسجيل على الإدخال فقط
+Set Tempo	ضبط التيمبو
+Set UI State	ضبط حالة الواجهة
+Set the session tempo from the beats	اضبط تيمبو الجلسة من النبضات
+Setup	الإعداد
+Shift (seconds)	الإزاحة (ثوانٍ)
+Shift...	إزاحة...
+Show	إظهار
+Show / Hide...	إظهار / إخفاء...
+Show Target Playlist	إظهار قائمة الهدف
+Show grid lines	إظهار خطوط الشبكة
+Sibelius	Sibelius
+Sibelius...	Sibelius...
+Sign In	تسجيل الدخول
+Signal Generator	مولّد الإشارة
+Sketch to Front	الرسم إلى الأمام
+Sketch...	الرسم...
+Smart Tool (F6+F7 / F7+F8)	الأداة الذكية (F6+F7 / F7+F8)
+Snap to	المحاذاة إلى
+Solo Mode	وضع الانفراد
+Sort	ترتيب
+SoundFlow	SoundFlow
+Soundbase	قاعدة الأصوات
+Source code: github.com/7mz410/CreativeStudio-aswat	الشيفرة المصدرية: github.com/7mz410/CreativeStudio-aswat
+Space Clips…	توزيع المقاطع…
+Splice	ربط
+Split into Mono	تقسيم إلى أحادي
+Start	البداية
+Start Collaboration...	بدء التعاون...
+Start to Fill Selection	البداية لملء التحديد
+Start to Insertion	البداية إلى نقطة الإدراج
+Step Input...	الإدخال خطوة بخطوة...
+Stereo	ستيريو
+Stop (Space)	إيقاف (مسافة)
+Stretch...	تمديد...
+Strip Silence	إزالة الصمت
+Sub	فرعي
+Sync Point	نقطة المزامنة
+Synchronization	المزامنة
+System	النظام
+System Usage	استخدام النظام
+TCE Edit to Timeline Selection	تحرير TCE إلى تحديد الخط الزمني
+Tab to Transient	Tab إلى الطرقة
+Target Playlist	قائمة الهدف
+Task Manager	مدير المهام
+Tempo	التيمبو
+Tempo Editor	محرّر التيمبو
+Tempo Operations	عمليات التيمبو
+Tempo Operations Window	نافذة عمليات التيمبو
+Theme	السمة
+Thin	تخفيف
+Thin All	تخفيف الكل
+This plugin has no editor of its own, or it is not loaded	هذه الإضافة لا تملك محرّراً خاصاً بها، أو أنها غير محمّلة
+Tile	ترتيب متجاور
+Tile Horizontal	ترتيب أفقي
+Tile Vertical	ترتيب عمودي
+Time Compression Expansion	ضغط وتمديد الزمن
+Time Lock/Unlock	قفل/فتح الزمن
+Time Operations	عمليات الزمن
+Time Operations Window	نافذة عمليات الزمن
+Time Shift	إزاحة الزمن
+Timecode	الرمز الزمني
+Timecode 2	الرمز الزمني 2
+Timecode Rate	معدل الرمز الزمني
+Timecode burn-in	طبع الرمز الزمني
+Title	العنوان
+To Current Automation Type	إلى نوع الأتمتة الحالي
+To File Boundaries	إلى حدود الملف
+To File End	إلى نهاية الملف
+To File Start	إلى بداية الملف
+To Fill Selection	لملء التحديد
+To Selection	إلى التحديد
+Toggle Mix/Edit	تبديل المزج/التحرير
+Toggle Recent Playlist	تبديل قائمة المقاطع الأخيرة
+Track	المسار
+Track Color	لون المسار
+Track Height	ارتفاع المسار
+Track Lane	مسار فرعي
+Track Lane Color	لون المسار الفرعي
+Track List	قائمة المسارات
+Track Number	رقم المسار
+Track Presets	إعدادات المسار
+Track Transcription Lane	مسار تفريغ المسار
+TrackPunch	TrackPunch
+Tracks	المسارات
+Transcript	النص المفرّغ
+Transcription Settings...	إعدادات التفريغ...
+Transparency	الشفافية
+Transport	أدوات التشغيل
+Transport Online	أدوات التشغيل متصلة
+Transpose	النقل الصوتي
+Transpose...	النقل الصوتي...
+Trim	القص
+Trim Playlist	قص قائمة المقاطع
+Trim and Downmix	قص وخفض المزج
+Trim to All Enabled	قص إلى كل المفعّلة
+Trim to Current	قص إلى الحالي
+UI Customization	تخصيص الواجهة
+Undo	تراجع
+Undo History	سجل التراجع
+Ungroup	فك المجموعة
+Ungroup All	فك كل المجموعات
+Universe	الفضاء
+Unloop...	إلغاء الحلقة...
+Update Active Configuration	تحديث الإعداد النشط
+User Time Stamp	الطابع الزمني للمستخدم
+User presets need the desktop app.	الإعدادات المسبقة للمستخدم تحتاج إلى تطبيق سطح المكتب.
+Uses the edit selection.	يستخدم تحديد التحرير.
+VENUE Channel Names as Track Names	أسماء قنوات VENUE كأسماء مسارات
+VST3	VST3
+Vari-Fi	Vari-Fi
+Vel +10	شدة +10
+Vel −10	شدة −10
+Velocity	الشدة
+Video	الفيديو
+Video Sync Offset...	إزاحة مزامنة الفيديو...
+Video Track Offline	مسار الفيديو غير متصل
+Video Track Online	مسار الفيديو متصل
+Video Universe	فضاء الفيديو
+Video...	الفيديو...
+View	عرض
+Waveforms	أشكال الموجات
+Window	نافذة
+Window Configuration List	قائمة إعدادات النوافذ
+Workspace	مساحة العمل
+Workspaces	مساحات العمل
+Workspaces to Front	مساحات العمل إلى الأمام
+Write MIDI Real-Time Properties	كتابة خصائص MIDI الفورية
+Write automation for the selected tracks:	اكتب الأتمتة للمسارات المحددة:
+Write to All Enabled	الكتابة إلى كل المفعّلة
+Write to Current	الكتابة إلى الحالي
+Write to Notes	الكتابة إلى النوتات
+X-OR (Cancels Previous Solo)	X-OR (يلغي الانفراد السابق)
+aswat	أصوات
+aswat.studio.creative.ps	aswat.studio.creative.ps
+bar(s)	قسم
+bpm	bpm
+comments	التعليقات
+end bpm 	نهاية bpm 
+front	الأمام
+in	دخل
+media offline	الوسائط غير متصلة
+movie missing from session	الفيلم مفقود من الجلسة
+new	جديد
+new bus...	ناقل جديد...
+no insert	لا إدراج
+none	لا شيء
+start bpm 	بداية bpm 
+…	…
+🔍 Find clips	🔍 ابحث عن المقاطع

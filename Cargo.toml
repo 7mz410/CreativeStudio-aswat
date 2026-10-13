@@ -59,6 +59,10 @@ todo = "warn"
 too_many_arguments = "allow"
 type_complexity = "allow"
 
+# Creative Studio: egui with a right-to-left switch for the Arabic interface (studio/RTL.md).
+[patch.crates-io]
+egui = { path = "vendor/egui" }
+
 [profile.dev.package."*"]
 opt-level = 2
 

@@ -26,6 +26,8 @@ serde.workspace = true
 serde_json.workspace = true
 log.workspace = true
 image.workspace = true
+# Creative Studio: reorders Arabic words for egui, which lays text out left to right.
+unicode-bidi = "0.3"
 
 [dev-dependencies]
 egui_kittest = { workspace = true, features = ["wgpu", "snapshot"] }
