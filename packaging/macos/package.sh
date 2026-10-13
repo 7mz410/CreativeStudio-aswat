@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build, sign and (optionally) notarize the macOS release artifacts:
 #
-#   $DIST/soundcraft-<version>-macos-<arch>.dmg          SoundCraft.app on a drag-to-Applications DMG
+#   $DIST/soundcraft-<version>-macos-<arch>.dmg          aswat.app on a drag-to-Applications DMG
 #   $DIST/soundcraft-cli-<version>-macos-<arch>.zip      the headless CLI
 #
 # Usage: packaging/macos/package.sh [--arch universal|aarch64|x86_64] [--skip-build]
@@ -39,7 +39,7 @@ export MACOSX_DEPLOYMENT_TARGET=11.0
 IDENTITY="${MACOS_SIGN_IDENTITY:--}"
 SHORT_VERSION="${VERSION%%-*}"
 WORK="$CARGO_TARGET_DIR/macos-package"
-APP="$WORK/SoundCraft.app"
+APP="$WORK/aswat.app"
 DMG="$DIST/soundcraft-$VERSION-macos-$ARCH.dmg"
 CLI_ZIP="$DIST/soundcraft-cli-$VERSION-macos-$ARCH.zip"
 
@@ -97,7 +97,7 @@ notarize() {
   fi
 }
 
-# ---- SoundCraft.app ----------------------------------------------------------------------------
+# ---- aswat.app ----------------------------------------------------------------------------
 echo "==> assembling $APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # Executable and icon carry the display name (CFBundleExecutable / CFBundleIconFile).
@@ -131,7 +131,7 @@ fi
 echo "==> building $DMG"
 STAGE="$WORK/dmg"
 mkdir -p "$STAGE"
-ditto "$APP" "$STAGE/SoundCraft.app"
+ditto "$APP" "$STAGE/aswat.app"
 ln -s /Applications "$STAGE/Applications"
 # Finder window layout: background, icon size and positions (packaging/macos/dmg/README.md).
 mkdir -p "$STAGE/.background"
@@ -157,7 +157,7 @@ hdiutil_retry() {
     sleep $((attempt * 10))
   done
 }
-hdiutil_retry create create -srcfolder "$STAGE" -volname "SoundCraft" -fs HFS+ -format UDZO -imagekey zlib-level=9 -ov "$DMG"
+hdiutil_retry create create -srcfolder "$STAGE" -volname "aswat" -fs HFS+ -format UDZO -imagekey zlib-level=9 -ov "$DMG"
 sign "$DMG"
 codesign --verify --strict --verbose=2 "$DMG"
 # The app users get must still pass --strict: inside the finished image and after a ditto copy out
@@ -168,19 +168,19 @@ rm -rf "$MOUNT" "$COPY"
 mkdir -p "$MOUNT" "$COPY"
 hdiutil_retry attach attach -nobrowse -readonly -noautoopen -mountpoint "$MOUNT" "$DMG" >/dev/null
 dmg_ok=1
-codesign --verify --strict --deep --verbose=2 "$MOUNT/SoundCraft.app" || dmg_ok=0
+codesign --verify --strict --deep --verbose=2 "$MOUNT/aswat.app" || dmg_ok=0
 if [ "$dmg_ok" = 1 ]; then
-  { ditto "$MOUNT/SoundCraft.app" "$COPY/SoundCraft.app" &&
-    codesign --verify --strict --deep --verbose=2 "$COPY/SoundCraft.app"; } || dmg_ok=0
+  { ditto "$MOUNT/aswat.app" "$COPY/aswat.app" &&
+    codesign --verify --strict --deep --verbose=2 "$COPY/aswat.app"; } || dmg_ok=0
 fi
 if [ "$dmg_ok" = 1 ] && [ "$NOTARIZE" = 1 ]; then
-  spctl --assess --type execute -vvv "$COPY/SoundCraft.app" || dmg_ok=0
+  spctl --assess --type execute -vvv "$COPY/aswat.app" || dmg_ok=0
 fi
-[ "$dmg_ok" = 1 ] || xattr -lr "$MOUNT/SoundCraft.app" >&2 || true
+[ "$dmg_ok" = 1 ] || xattr -lr "$MOUNT/aswat.app" >&2 || true
 hdiutil_retry detach detach "$MOUNT" >/dev/null || dmg_ok=0
 rm -rf "$COPY"
 if [ "$dmg_ok" != 1 ]; then
-  echo "error: SoundCraft.app in $(basename "$DMG") fails strict verification" >&2
+  echo "error: aswat.app in $(basename "$DMG") fails strict verification" >&2
   exit 1
 fi
 if [ "$NOTARIZE" = 1 ]; then

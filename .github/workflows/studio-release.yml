@@ -20,5 +20,5 @@ jobs:
       app: aswat
       package: soundcraft
       version_var: SOUNDCRAFT_VERSION
-      bundle: SoundCraft.app
+      bundle: aswat.app
       tag: ${{ github.ref_name }}
