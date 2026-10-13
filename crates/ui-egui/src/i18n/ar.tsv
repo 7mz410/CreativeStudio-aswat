@@ -98,6 +98,7 @@ Bypass	تجاوز
 Bypass Inserts	تجاوز الإدراجات
 C major	دو ماجور
 CLAP	CLAP
+CLIPS	المقاطع
 Calibration Mode	وضع المعايرة
 Can't Redo	لا يمكن الإعادة
 Can't Undo	لا يمكن التراجع
@@ -134,6 +135,7 @@ Clip Gain Info	معلومات كسب المقطع
 Clip Gain Line	خط كسب المقطع
 Clip Groups...	مجموعات المقاطع...
 Clip List	قائمة المقاطع
+Clips	المقاطع
 Close All Workspaces	إغلاق كل مساحات العمل
 Close Plugin Editor	إغلاق محرّر الإضافة
 Close Session	إغلاق الجلسة
@@ -248,6 +250,7 @@ Flatten Performance...	تسوية الأداء...
 Folder Lines	خطوط المجلد
 Format	التنسيق
 Freeze	تجميد
+GROUPS	المجموعات
 Gain	الكسب
 Get Info...	معلومات...
 Glide Pan Only	انزلاق الموازنة فقط
@@ -293,6 +296,7 @@ Latch	المزلاج
 Layered Editing	التحرير بالطبقات
 Learn	التعلم
 Legato	ليغاتو
+Length	المدة
 Light	فاتح
 Linear...	خطي...
 Link Timeline and Edit Selection	ربط الخط الزمني وتحديد التحرير
@@ -304,6 +308,7 @@ Loop Record	تسجيل بالحلقة
 Loop...	حلقة...
 Low Latency Monitoring	مراقبة منخفضة التأخير
 Lower Dock	الشريط السفلي
+MEMORY LOCATIONS	مواضع الذاكرة
 MIDI	MIDI
 MIDI Beat Clock...	ساعة نبضات MIDI...
 MIDI Controls	عناصر تحكم MIDI
@@ -597,6 +602,7 @@ Synchronization	المزامنة
 System	النظام
 System Usage	استخدام النظام
 TCE Edit to Timeline Selection	تحرير TCE إلى تحديد الخط الزمني
+TRACKS	المسارات
 Tab to Transient	Tab إلى الطرقة
 Target Playlist	قائمة الهدف
 Task Manager	مدير المهام
@@ -640,6 +646,7 @@ Track Presets	إعدادات المسار
 Track Transcription Lane	مسار تفريغ المسار
 TrackPunch	TrackPunch
 Tracks	المسارات
+Tracks and Groups	المسارات والمجموعات
 Transcript	النص المفرّغ
 Transcription Settings...	إعدادات التفريغ...
 Transparency	الشفافية
@@ -653,6 +660,7 @@ Trim and Downmix	قص وخفض المزج
 Trim to All Enabled	قص إلى كل المفعّلة
 Trim to Current	قص إلى الحالي
 UI Customization	تخصيص الواجهة
+UNDO HISTORY	سجل التراجع
 Undo	تراجع
 Undo History	سجل التراجع
 Ungroup	فك المجموعة

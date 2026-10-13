@@ -18,7 +18,7 @@ fn panel_header(ui: &mut Ui, title: &str) {
 pub fn tracks_and_groups(app: &mut SoundApp, ui: &mut Ui) {
     let t = Tokens::current();
     let total = ui.available_height();
-    panel_header(ui, "TRACKS");
+    panel_header(ui, tl!("TRACKS"));
     let tracks: Vec<(u64, String, bool, [u8; 3], bool)> = {
         let s = app.engine.session();
         s.tracks.iter().map(|x| (x.id.0, x.name.clone(), !x.hidden, x.color, s.edit.selected_tracks.contains(&x.id))).collect()
@@ -43,7 +43,7 @@ pub fn tracks_and_groups(app: &mut SoundApp, ui: &mut Ui) {
         }
     });
     ui.add_space(4.0);
-    panel_header(ui, "GROUPS");
+    panel_header(ui, tl!("GROUPS"));
     let groups: Vec<(u64, char, String, bool, [u8; 3])> =
         app.engine.session().groups.iter().map(|g| (g.id.0, g.letter, g.name.clone(), g.active, g.color)).collect();
     egui::ScrollArea::vertical().id_salt("groups_scroll").auto_shrink([false, false]).show(ui, |ui| {
@@ -100,7 +100,7 @@ pub fn tracks_and_groups(app: &mut SoundApp, ui: &mut Ui) {
 
 pub fn clip_list(app: &mut SoundApp, ui: &mut Ui) {
     let t = Tokens::current();
-    panel_header(ui, "CLIPS");
+    panel_header(ui, tl!("CLIPS"));
     let items: Vec<(u64, String, bool, [u8; 3], bool)> = {
         let s = app.engine.session();
         let mut v = Vec::new();

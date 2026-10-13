@@ -198,8 +198,8 @@ fn metadata(app: &mut SoundApp, ctx: &egui::Context) {
                 ("Sample rate", format!("{} Hz", s.sample_rate.hz())),
                 ("Bit depth", format!("{:?}", s.bit_depth)),
                 ("Timecode rate", s.frame_rate.label().to_string()),
-                ("Tracks", s.tracks.len().to_string()),
-                ("Clips", s.tracks.iter().map(|t| t.clips().len()).sum::<usize>().to_string()),
+                (tl!("Tracks"), s.tracks.len().to_string()),
+                (tl!("Clips"), s.tracks.iter().map(|t| t.clips().len()).sum::<usize>().to_string()),
                 ("Audio files", s.sources.len().to_string()),
                 ("Markers", s.markers.len().to_string()),
                 (

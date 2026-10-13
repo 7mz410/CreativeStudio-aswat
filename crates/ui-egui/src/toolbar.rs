@@ -200,9 +200,9 @@ fn counters(app: &mut SoundApp, ui: &mut Ui) {
     // Start / End / Length.
     let s = app.engine.session();
     let rows = [
-        ("Start", fmt_pos(app, sel.start, main_fmt)),
-        ("End", fmt_pos(app, sel.end, main_fmt)),
-        ("Length", format_length(sel.start, sel.len(), main_fmt, s.sample_rate, &s.tempo, s.frame_rate)),
+        (tl!("Start"), fmt_pos(app, sel.start, main_fmt)),
+        (tl!("End"), fmt_pos(app, sel.end, main_fmt)),
+        (tl!("Length"), format_length(sel.start, sel.len(), main_fmt, s.sample_rate, &s.tempo, s.frame_rate)),
     ];
     for (i, (label, val)) in rows.iter().enumerate() {
         let y = r.min.y + 10.0 + i as f32 * 13.0;

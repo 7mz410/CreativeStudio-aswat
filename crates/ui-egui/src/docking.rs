@@ -32,8 +32,8 @@ impl Panel {
     fn label(self) -> &'static str {
         match self {
             Self::Canvas => "Session",
-            Self::Tracks => "Tracks and Groups",
-            Self::Clips => "Clips",
+            Self::Tracks => tl!("Tracks and Groups"),
+            Self::Clips => tl!("Clips"),
             Self::Midi => "MIDI Editor",
             Self::Memory => "Memory Locations",
             Self::History => "Undo History",
