@@ -29,11 +29,11 @@ and, at runtime, the operating system's own UI fonts when available (never redis
 | Path | Author | Source | License |
 |---|---|---|---|
 | `docs/studio/aswat.svg` | Hamza Abu Ayyash (Creative Studio) | Original artwork | MIT OR Apache-2.0 |
-| `assets/app-icon/icon.svg` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a navy tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/app-icon/icon.svg` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
 | `packaging/macos/dmg/` (all files) | @XusBadia | original (macOS DMG window background and layout, from the app icon; see `packaging/macos/dmg/README.md`) | MIT OR Apache-2.0 |
-| `assets/app-icon/soundcraft-1024.png` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a navy tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
-| `assets/app-icon/soundcraft-macos-512.png` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a navy tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
-| `assets/app-icon/soundcraft.icns` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a navy tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
-| `assets/app-icon/soundcraft.ico` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a navy tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
-| `assets/app-icon/hicolor/` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a navy tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/app-icon/soundcraft-1024.png` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/app-icon/soundcraft-macos-512.png` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/app-icon/soundcraft.icns` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/app-icon/soundcraft.ico` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
+| `assets/app-icon/hicolor/` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
 | `docs/images/` | SoundCraft contributors | screenshots of SoundCraft rendered from the synthesised demo session | MIT OR Apache-2.0 |
