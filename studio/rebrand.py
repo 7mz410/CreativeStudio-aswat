@@ -16,7 +16,7 @@ REPO = 'https://github.com/7mz410/CreativeStudio-aswat'
 SITE = 'https://studio.creative.ps'
 APP_SITE = 'https://aswat.studio.creative.ps'
 # Persisted names and legal lines; renaming them would lose settings or misstate copyright.
-KEEP = ('by the ArtCraft team', 'Application Support/SoundCraft', '/roaming/SoundCraft', 'the SoundCraft authors', 'SoundCraft contributors', 'SOUNDCRAFT_')
+KEEP = ('by the ArtCraft team', 'Application Support/SoundCraft', '/roaming/SoundCraft', 'the SoundCraft authors', 'SoundCraft contributors', 'SOUNDCRAFT_', 'SoundCraftData')
 # Persisted names whose literal is just "SoundCraft": eframe's storage name and the Windows settings folder.
 PROTECT = ('eframe::run_native(\n        "SoundCraft"', '.join("SoundCraft")')
 

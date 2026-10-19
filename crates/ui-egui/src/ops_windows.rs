@@ -90,8 +90,8 @@ fn beat_detective(app: &mut SoundApp, ctx: &egui::Context) {
     egui::Window::new(tl!("Beat Detective")).open(&mut open).default_size(vec2(360.0, 220.0)).show(ctx, |ui| {
         ui.label(tl!("Analyses the edit selection on the selected tracks."));
         ui.add(egui::Slider::new(&mut app.ops.beat_sensitivity, 0.0..=1.0).text("Sensitivity"));
-        ui.checkbox(&mut app.ops.beat_separate, tl!("Separate clips at detected beats"));
-        ui.checkbox(&mut app.ops.beat_set_tempo, tl!("Set the session tempo from the beats"));
+        crate::widgets::checkbox(ui, &mut app.ops.beat_separate, tl!("Separate clips at detected beats"));
+        crate::widgets::checkbox(ui, &mut app.ops.beat_set_tempo, tl!("Set the session tempo from the beats"));
         ui.horizontal(|ui| {
             if ui.button(tl!("Analyze")).clicked() {
                 let r = app.run("event.beat_detective", json!({"sensitivity": app.ops.beat_sensitivity, "separate": false, "set_tempo": false}));
