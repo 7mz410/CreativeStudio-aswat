@@ -51,6 +51,27 @@
   <!-- SoundCraft's own format: a JSON session file next to an "Audio Files" folder. -->
   <key>UTExportedTypeDeclarations</key>
   <array>
+    <!-- aswat's session: the same JSON file as .scraft, saved with the .aswat extension. -->
+    <dict>
+      <key>UTTypeIdentifier</key>
+      <string>ps.creative.studio.aswat.session</string>
+      <key>UTTypeDescription</key>
+      <string>aswat Session</string>
+      <key>UTTypeConformsTo</key>
+      <array>
+        <string>public.data</string>
+        <string>public.content</string>
+      </array>
+      <key>UTTypeIconFile</key>
+      <string>aswat-document</string>
+      <key>UTTypeTagSpecification</key>
+      <dict>
+        <key>public.filename-extension</key>
+        <array><string>aswat</string></array>
+        <key>public.mime-type</key>
+        <array><string>application/x-aswat-session</string></array>
+      </dict>
+    </dict>
     <dict>
       <key>UTTypeIdentifier</key>
       <string>ai.storyteller.soundcraft.session</string>
@@ -77,15 +98,15 @@
   <array>
     <dict>
       <key>CFBundleTypeName</key>
-      <string>SoundCraft Session</string>
+      <string>aswat Session</string>
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>LSHandlerRank</key>
       <string>Owner</string>
       <key>CFBundleTypeIconFile</key>
-      <string>SoundCraft</string>
+      <string>aswat-document</string>
       <key>LSItemContentTypes</key>
-      <array><string>ai.storyteller.soundcraft.session</string></array>
+      <array><string>ps.creative.studio.aswat.session</string><string>ai.storyteller.soundcraft.session</string></array>
     </dict>
     <!-- Audio and MIDI: offered under "Open With" (imported into a session), never taking over
          the user's default player. -->

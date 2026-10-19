@@ -29,6 +29,8 @@ and, at runtime, the operating system's own UI fonts when available (never redis
 | Path | Author | Source | License |
 |---|---|---|---|
 | `docs/studio/aswat.svg` | Hamza Abu Ayyash (Creative Studio) | Original artwork | MIT OR Apache-2.0 |
+| `assets/app-icon/aswat-document.svg` | Hamza Abu Ayyash (Creative Studio) | original work: the aswat document icon (`file icons/aswat.svg`) | MIT OR Apache-2.0 |
+| `assets/app-icon/aswat-document.icns` | Hamza Abu Ayyash (Creative Studio) | the aswat document icon (`assets/app-icon/aswat-document.svg`) rendered with rsvg-convert, packed with iconutil; the document icon of `.aswat` sessions | MIT OR Apache-2.0 |
 | `assets/app-icon/icon.svg` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |
 | `packaging/macos/dmg/` (all files) | @XusBadia | original (macOS DMG window background and layout, from the app icon; see `packaging/macos/dmg/README.md`) | MIT OR Apache-2.0 |
 | `assets/app-icon/soundcraft-1024.png` | Hamza Abu Ayyash (Creative Studio) | the aswat star (`docs/studio/aswat.svg`) on a white tile, rendered by `packaging/icons.sh` | MIT OR Apache-2.0 |

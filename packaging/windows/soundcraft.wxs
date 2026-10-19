@@ -54,6 +54,9 @@
           <Extension Id="scraft" ContentType="application/x-soundcraft-session">
             <Verb Id="open" Command="Open" TargetFile="SoundcraftExe" Argument="&quot;%1&quot;" />
           </Extension>
+          <Extension Id="aswat" ContentType="application/x-aswat-session">
+            <Verb Id="open" Command="Open" TargetFile="SoundcraftExe" Argument="&quot;%1&quot;" />
+          </Extension>
         </ProgId>
         <!-- Audio and MIDI files: offered under "Open with" (imported into a session), never forced
              as the default. -->
@@ -73,6 +76,7 @@
         <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe" Name="FriendlyAppName" Value="SoundCraft" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe\shell\open\command" Value="&quot;[#SoundcraftExe]&quot; &quot;%1&quot;" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe\SupportedTypes" Name=".scraft" Value="" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe\SupportedTypes" Name=".aswat" Value="" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe\SupportedTypes" Name=".wav" Value="" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe\SupportedTypes" Name=".aif" Value="" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\Applications\soundcraft.exe\SupportedTypes" Name=".aiff" Value="" Type="string" />

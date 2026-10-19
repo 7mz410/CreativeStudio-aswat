@@ -1093,13 +1093,13 @@ fn back_up(file: &Path) {
     }
 }
 
-/// The file a session saved to `path` goes to: `path`, with `.scraft` added when it has no
+/// The file a session saved to `path` goes to: `path`, with `.aswat` added when it has no
 /// extension and isn't an existing file.
 pub fn session_file(path: &str) -> PathBuf {
     let p = PathBuf::from(path);
     // Only a path the write root allows is probed, so a refused one can't be used to test for files.
     let is_file = crate::file_access::check_write(&p).is_ok() && p.is_file();
-    if p.extension().is_none() && !is_file { p.with_extension(soundcraft_model::SESSION_EXTENSION) } else { p }
+    if p.extension().is_none() && !is_file { p.with_extension(soundcraft_model::STUDIO_EXTENSION) } else { p }
 }
 
 /// True when `command` would write a session over the existing `file`. Save, Save As and Save

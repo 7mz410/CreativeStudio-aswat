@@ -9,4 +9,10 @@
     <icon name="ai.storyteller.soundcraft"/>
     <glob pattern="*.scraft"/>
   </mime-type>
+  <mime-type type="application/x-aswat-session">
+    <comment>aswat session</comment>
+    <sub-class-of type="application/json"/>
+    <icon name="ai.storyteller.soundcraft"/>
+    <glob pattern="*.aswat"/>
+  </mime-type>
 </mime-info>
