@@ -29,6 +29,9 @@ image.workspace = true
 # Creative Studio: reorders Arabic words for egui, which lays text out left to right.
 unicode-bidi = "0.3"
 
+[target.'cfg(target_os = "linux")'.dependencies]
+zbus = "5"
+
 [dev-dependencies]
 egui_kittest = { workspace = true, features = ["wgpu", "snapshot"] }
 
