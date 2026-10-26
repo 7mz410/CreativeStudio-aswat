@@ -30,6 +30,10 @@ pub struct OpsState {
     pub rtp_transpose: i64,
     pub rtp_duration: f64,
     pub rtp_delay: i64,
+    /// The MIDI tracks the Real-Time Properties form was last filled from, and the values it read:
+    /// the form re-reads the tracks when either changes (#444).
+    pub rtp_targets: Vec<soundcraft_model::TrackId>,
+    pub rtp_loaded: Option<RtpValues>,
     pub identify_bars: u32,
 }
 
@@ -57,6 +61,8 @@ impl Default for OpsState {
             rtp_transpose: 0,
             rtp_duration: 100.0,
             rtp_delay: 0,
+            rtp_targets: Vec::new(),
+            rtp_loaded: None,
             identify_bars: 1,
         }
     }
@@ -82,22 +88,23 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
     rtp(app, ctx);
 }
 
+/// Beat Detective window: sensitivity, separate and set-tempo options, Analyze and Apply results, and Identify Beat.
 fn beat_detective(app: &mut SoundApp, ctx: &egui::Context) {
     let mut open = app.ui.show_beat_detective;
     if !open {
         return;
     }
-    egui::Window::new(tl!("Beat Detective")).open(&mut open).default_size(vec2(360.0, 220.0)).show(ctx, |ui| {
-        ui.label(tl!("Analyses the edit selection on the selected tracks."));
+    egui::Window::new("Beat Detective").open(&mut open).default_size(vec2(360.0, 220.0)).show(ctx, |ui| {
+        ui.label("Analyses the edit selection on the selected tracks.");
         ui.add(egui::Slider::new(&mut app.ops.beat_sensitivity, 0.0..=1.0).text("Sensitivity"));
-        crate::widgets::checkbox(ui, &mut app.ops.beat_separate, tl!("Separate clips at detected beats"));
-        crate::widgets::checkbox(ui, &mut app.ops.beat_set_tempo, tl!("Set the session tempo from the beats"));
+        crate::widgets::checkbox(ui, &mut app.ops.beat_separate, "Separate clips at detected beats");
+        crate::widgets::checkbox(ui, &mut app.ops.beat_set_tempo, "Set the session tempo from the beats");
         ui.horizontal(|ui| {
-            if ui.button(tl!("Analyze")).clicked() {
+            if ui.button("Analyze").clicked() {
                 let r = app.run("event.beat_detective", json!({"sensitivity": app.ops.beat_sensitivity, "separate": false, "set_tempo": false}));
                 app.ops.beat_result = r.map_or_else(|e| e, |v| v.to_string());
             }
-            if ui.button(egui::RichText::new(tl!("Apply")).strong()).clicked() {
+            if ui.button(egui::RichText::new("Apply").strong()).clicked() {
                 let r = app.run(
                     "event.beat_detective",
                     json!({"sensitivity": app.ops.beat_sensitivity, "separate": app.ops.beat_separate, "set_tempo": app.ops.beat_set_tempo}),
@@ -107,10 +114,10 @@ fn beat_detective(app: &mut SoundApp, ctx: &egui::Context) {
         });
         ui.separator();
         ui.horizontal(|ui| {
-            ui.label(tl!("Identify Beat: selection is"));
-            ui.add(egui::DragValue::new(&mut app.ops.identify_bars).range(1..=64));
-            ui.label(tl!("bar(s)"));
-            if ui.button(tl!("Set Tempo")).clicked() {
+            ui.label("Identify Beat: selection is");
+            ui.add(egui::DragValue::new(&mut app.ops.identify_bars).range(1..=64)).accessible_name("Identify beat bars");
+            ui.label("bar(s)");
+            if ui.button("Set Tempo").clicked() {
                 let r = app.run("event.identify_beat", json!({"bars": app.ops.identify_bars}));
                 app.ops.beat_result = r.map_or_else(|e| e, |v| v.to_string());
             }
@@ -138,26 +145,28 @@ pub(crate) fn tempo_ops_apply(curve: &str, start_bpm: f64, end_bpm: f64) -> (&'s
     }
 }
 
+/// Tempo Operations window: choose a curve and start/end tempo, then dispatch its command using the edit selection.
+/// Constant sends only the start BPM; without a nonempty range, its command defaults to sample zero.
 fn tempo_ops(app: &mut SoundApp, ctx: &egui::Context) {
     let mut open = app.ui.show_tempo_ops;
     if !open {
         return;
     }
-    egui::Window::new(tl!("Tempo Operations")).open(&mut open).default_size(vec2(360.0, 200.0)).show(ctx, |ui| {
-        egui::ComboBox::from_label(tl!("Curve")).selected_text(app.ops.tempo_curve.clone()).show_ui(ui, |ui| {
+    egui::Window::new("Tempo Operations").open(&mut open).default_size(vec2(360.0, 200.0)).show(ctx, |ui| {
+        egui::ComboBox::from_label("Curve").selected_text(app.ops.tempo_curve.clone()).show_ui(ui, |ui| {
             for c in ["constant", "linear", "parabolic", "s-curve", "scale", "stretch"] {
                 ui.selectable_value(&mut app.ops.tempo_curve, c.to_string(), c);
             }
         });
-        ui.add(egui::DragValue::new(&mut app.ops.tempo_start).range(5.0..=999.0).prefix(tl!("start bpm ")));
-        ui.add(egui::DragValue::new(&mut app.ops.tempo_end).range(5.0..=999.0).prefix(tl!("end bpm ")));
+        ui.add(egui::DragValue::new(&mut app.ops.tempo_start).range(5.0..=999.0).prefix("start bpm ")).accessible_name("Start tempo (BPM)");
+        ui.add(egui::DragValue::new(&mut app.ops.tempo_end).range(5.0..=999.0).prefix("end bpm ")).accessible_name("End tempo (BPM)");
         ui.label(
-            egui::RichText::new(tl!(
-                "Applies across the edit selection (constant: at the insertion point; scale: factor = end / start; stretch: factor = start / end)."
-            ))
+            egui::RichText::new(
+                "Applies across the edit selection (constant: at the insertion point; scale: factor = end / start; stretch: factor = start / end).",
+            )
             .small(),
         );
-        if ui.button(egui::RichText::new(tl!("Apply")).strong()).clicked() {
+        if ui.button(egui::RichText::new("Apply").strong()).clicked() {
             let (id, p) = tempo_ops_apply(&app.ops.tempo_curve, app.ops.tempo_start, app.ops.tempo_end);
             let r = app.run(id, p);
             result_line(ui, &r);
@@ -166,13 +175,15 @@ fn tempo_ops(app: &mut SoundApp, ctx: &egui::Context) {
     app.ui.show_tempo_ops = open;
 }
 
+/// Time Operations window: insert a duration in seconds at the selection start, cut the edit selection, change the
+/// meter, or move the song start to the selection start.
 fn time_ops(app: &mut SoundApp, ctx: &egui::Context) {
     let mut open = app.ui.show_time_ops;
     if !open {
         return;
     }
-    egui::Window::new(tl!("Time Operations")).open(&mut open).default_size(vec2(360.0, 200.0)).show(ctx, |ui| {
-        egui::ComboBox::from_label(tl!("Operation")).selected_text(app.ops.time_op.clone()).show_ui(ui, |ui| {
+    egui::Window::new("Time Operations").open(&mut open).default_size(vec2(360.0, 200.0)).show(ctx, |ui| {
+        egui::ComboBox::from_label("Operation").selected_text(app.ops.time_op.clone()).show_ui(ui, |ui| {
             for c in ["insert", "cut", "change meter", "move song start"] {
                 ui.selectable_value(&mut app.ops.time_op, c.to_string(), c);
             }
@@ -180,23 +191,24 @@ fn time_ops(app: &mut SoundApp, ctx: &egui::Context) {
         match app.ops.time_op.as_str() {
             "change meter" => {
                 ui.horizontal(|ui| {
-                    ui.add(egui::DragValue::new(&mut app.ops.meter_num).range(1..=64));
+                    ui.add(egui::DragValue::new(&mut app.ops.meter_num).range(1..=64)).accessible_name("Meter numerator");
                     ui.label("/");
-                    egui::ComboBox::from_id_salt("den").selected_text(app.ops.meter_den.to_string()).show_ui(ui, |ui| {
+                    let den = egui::ComboBox::from_id_salt("den").selected_text(app.ops.meter_den.to_string()).show_ui(ui, |ui| {
                         for d in [2u32, 4, 8, 16] {
                             ui.selectable_value(&mut app.ops.meter_den, d, d.to_string());
                         }
                     });
+                    den.response.accessible_name("Meter denominator");
                 });
             }
             "insert" => {
-                ui.add(egui::DragValue::new(&mut app.ops.time_seconds).range(0.0..=3600.0).suffix(tl!(" s")));
+                ui.add(egui::DragValue::new(&mut app.ops.time_seconds).range(0.0..=3600.0).suffix(" s")).accessible_name("Time (seconds)");
             }
             _ => {
-                ui.label(egui::RichText::new(tl!("Uses the edit selection.")).small());
+                ui.label(egui::RichText::new("Uses the edit selection.").small());
             }
         }
-        if ui.button(egui::RichText::new(tl!("Apply")).strong()).clicked() {
+        if ui.button(egui::RichText::new("Apply").strong()).clicked() {
             let at = app.engine.session().edit.selection.start;
             let r = match app.ops.time_op.as_str() {
                 "insert" => app.run("event.insert_time", json!({"start": at, "length": {"seconds": app.ops.time_seconds}})),
@@ -215,15 +227,15 @@ fn midi_ops(app: &mut SoundApp, ctx: &egui::Context) {
     if !open {
         return;
     }
-    egui::Window::new(tl!("MIDI Operations")).open(&mut open).default_size(vec2(360.0, 220.0)).show(ctx, |ui| {
-        egui::ComboBox::from_label(tl!("Operation")).selected_text(app.ops.midi_op.clone()).show_ui(ui, |ui| {
+    egui::Window::new("MIDI Operations").open(&mut open).default_size(vec2(360.0, 220.0)).show(ctx, |ui| {
+        egui::ComboBox::from_label("Operation").selected_text(app.ops.midi_op.clone()).show_ui(ui, |ui| {
             for c in ["quantize", "transpose", "change velocity", "flatten performance", "restore performance"] {
                 ui.selectable_value(&mut app.ops.midi_op, c.to_string(), c);
             }
         });
         match app.ops.midi_op.as_str() {
             "quantize" => {
-                egui::ComboBox::from_label(tl!("Grid")).selected_text(app.ops.quant_grid.clone()).show_ui(ui, |ui| {
+                egui::ComboBox::from_label("Grid").selected_text(app.ops.quant_grid.clone()).show_ui(ui, |ui| {
                     for g in ["1/4", "1/8", "1/8t", "1/16", "1/16t", "1/32"] {
                         ui.selectable_value(&mut app.ops.quant_grid, g.to_string(), g);
                     }
@@ -239,8 +251,8 @@ fn midi_ops(app: &mut SoundApp, ctx: &egui::Context) {
             }
             _ => {}
         }
-        ui.label(egui::RichText::new(tl!("Applies to the selected MIDI clips (or those under the selection).")).small());
-        if ui.button(egui::RichText::new(tl!("Apply")).strong()).clicked() {
+        ui.label(egui::RichText::new("Applies to the selected MIDI clips (or those under the selection).").small());
+        if ui.button(egui::RichText::new("Apply").strong()).clicked() {
             let r = match app.ops.midi_op.as_str() {
                 "quantize" => {
                     app.run("event.quantize", json!({"grid": app.ops.quant_grid, "strength": app.ops.quant_strength, "swing": app.ops.quant_swing}))
@@ -261,22 +273,23 @@ fn rtp(app: &mut SoundApp, ctx: &egui::Context) {
     if !open {
         return;
     }
-    egui::Window::new(tl!("MIDI Real-Time Properties")).open(&mut open).default_size(vec2(340.0, 200.0)).show(ctx, |ui| {
-        ui.label(tl!("Non-destructive, applied at playback to the selected MIDI tracks."));
-        let mut changed = false;
-        changed |= ui.add(egui::Slider::new(&mut app.ops.rtp_velocity, -127..=127).text("Velocity +")).changed();
-        changed |= ui.add(egui::Slider::new(&mut app.ops.rtp_transpose, -48..=48).text("Transpose")).changed();
-        changed |= ui.add(egui::Slider::new(&mut app.ops.rtp_duration, 1.0..=400.0).text("Duration %")).changed();
-        changed |= ui.add(egui::Slider::new(&mut app.ops.rtp_delay, -960..=960).text("Delay (ticks)")).changed();
-        if changed {
-            let p = json!({"velocity": app.ops.rtp_velocity, "transpose": app.ops.rtp_transpose, "duration": app.ops.rtp_duration, "delay": app.ops.rtp_delay});
+    let targets = app.engine.target_tracks();
+    sync_rtp_form(&mut app.ops, app.engine.session(), targets, ctx.dragged_id().is_some());
+    egui::Window::new("MIDI Real-Time Properties").open(&mut open).default_size(vec2(340.0, 200.0)).show(ctx, |ui| {
+        ui.label("Non-destructive, applied at playback to the selected MIDI tracks.");
+        let mut changed = RtpChanged::default();
+        changed.velocity = ui.add(egui::Slider::new(&mut app.ops.rtp_velocity, -127..=127).text("Velocity +")).changed();
+        changed.transpose = ui.add(egui::Slider::new(&mut app.ops.rtp_transpose, -48..=48).text("Transpose")).changed();
+        changed.duration = ui.add(egui::Slider::new(&mut app.ops.rtp_duration, 1.0..=400.0).text("Duration %")).changed();
+        changed.delay = ui.add(egui::Slider::new(&mut app.ops.rtp_delay, -960..=960).text("Delay (ticks)")).changed();
+        if let Some(p) = rtp_params(changed, &app.ops) {
             let _ = app.engine.execute_merged("event.midi_rtp", &p, "rtp");
         }
         ui.horizontal(|ui| {
-            if ui.button(tl!("Write to Notes")).clicked() {
+            if ui.button("Write to Notes").clicked() {
                 let _ = app.run("track.write_midi_rtp", json!({}));
             }
-            if ui.button(tl!("Clear")).clicked() {
+            if ui.button("Clear").clicked() {
                 let _ = app.run("event.midi_rtp", json!({"clear": true}));
                 app.ops.rtp_velocity = 0;
                 app.ops.rtp_transpose = 0;
@@ -286,6 +299,66 @@ fn rtp(app: &mut SoundApp, ctx: &egui::Context) {
         });
     });
     app.ui.show_rtp = open;
+}
+
+/// Which of the form's controls the user changed this frame.
+#[derive(Default, Clone, Copy)]
+struct RtpChanged {
+    velocity: bool,
+    transpose: bool,
+    duration: bool,
+    delay: bool,
+}
+
+/// A form change submits only the properties the user touched: the command stores each key it is
+/// sent, so sending untouched ones would overwrite the target's values with the form's (#444).
+fn rtp_params(changed: RtpChanged, ops: &OpsState) -> Option<Value> {
+    let mut p = serde_json::Map::new();
+    if changed.velocity {
+        p.insert("velocity".into(), json!(ops.rtp_velocity));
+    }
+    if changed.transpose {
+        p.insert("transpose".into(), json!(ops.rtp_transpose));
+    }
+    if changed.duration {
+        p.insert("duration".into(), json!(ops.rtp_duration));
+    }
+    if changed.delay {
+        p.insert("delay".into(), json!(ops.rtp_delay));
+    }
+    (!p.is_empty()).then_some(Value::Object(p))
+}
+
+/// Velocity, transpose, duration % and delay, as the form shows them.
+pub type RtpValues = (i64, i64, f64, i64);
+
+/// Fills the form from the tracks it edits whenever the targets or their stored values change
+/// (selection, undo, a command), so it never shows (and a control change never writes back) stale
+/// values (#444). A slider being dragged keeps its value until it is released.
+fn sync_rtp_form(ops: &mut OpsState, s: &soundcraft_model::Session, targets: Vec<soundcraft_model::TrackId>, dragging: bool) {
+    let values = rtp_form_values(s, &targets);
+    if ops.rtp_targets != targets || (ops.rtp_loaded != Some(values) && !dragging) {
+        let (velocity, transpose, duration, delay) = values;
+        ops.rtp_targets = targets;
+        ops.rtp_loaded = Some(values);
+        ops.rtp_velocity = velocity;
+        ops.rtp_transpose = transpose;
+        ops.rtp_duration = duration;
+        ops.rtp_delay = delay;
+    }
+}
+
+/// The values the form shows for `targets`: the first target's own Real-Time Properties, or the
+/// neutral defaults when nothing is selected.
+fn rtp_form_values(s: &soundcraft_model::Session, targets: &[soundcraft_model::TrackId]) -> RtpValues {
+    let Some(&t) = targets.first() else { return (0, 0, 100.0, 0) };
+    let value = |key: &str, d: f64| s.edit.value(&format!("rtp.{}.{key}", t.0), d);
+    (
+        value("velocity", 0.0).clamp(-127.0, 127.0) as i64,
+        value("transpose", 0.0).clamp(-127.0, 127.0) as i64,
+        value("duration", 100.0).clamp(1.0, 1000.0),
+        value("delay", 0.0).clamp(-1e7, 1e7) as i64,
+    )
 }
 
 #[cfg(test)]
@@ -307,5 +380,44 @@ mod tests {
         let (id, p) = tempo_ops_apply("linear", 100.0, 140.0);
         assert_eq!(id, "event.tempo_linear");
         assert_eq!(p["end_bpm"], 140.0);
+    }
+
+    /// One control moved: only its property is submitted, so the command cannot overwrite the
+    /// target's other Real-Time Properties with the form's values (#444).
+    #[test]
+    fn rtp_submits_only_the_property_that_changed() {
+        let ops = OpsState { rtp_velocity: 12, rtp_transpose: 7, rtp_duration: 50.0, rtp_delay: 480, ..OpsState::default() };
+        let only_velocity = RtpChanged { velocity: true, ..RtpChanged::default() };
+        assert_eq!(rtp_params(only_velocity, &ops), Some(json!({"velocity": 12})));
+        let only_duration = RtpChanged { duration: true, ..RtpChanged::default() };
+        assert_eq!(rtp_params(only_duration, &ops), Some(json!({"duration": 50.0})));
+        assert_eq!(rtp_params(RtpChanged::default(), &ops), None, "no control moved, no command");
+    }
+
+    /// The form reads the target's own values when the window opens or the selection changes.
+    #[test]
+    fn the_rtp_form_shows_the_target_tracks_values() {
+        let mut e = soundcraft_engine::Engine::default();
+        e.execute("track.new", &json!({"kind": "instrument", "name": "Synth"})).unwrap();
+        let t = e.session().tracks.last().unwrap().id;
+        e.execute("event.midi_rtp", &json!({"track": t.0, "velocity": -12, "transpose": 7, "duration": 50.0, "delay": 480})).unwrap();
+        assert_eq!(rtp_form_values(e.session(), &[]), (0, 0, 100.0, 0), "no target: the neutral defaults");
+        assert_eq!(rtp_form_values(e.session(), &[t]), (-12, 7, 50.0, 480));
+    }
+
+    /// Undo keeps the same targets but changes their stored values: the form follows.
+    #[test]
+    fn the_rtp_form_follows_an_undo_on_the_same_targets() {
+        let mut e = soundcraft_engine::Engine::default();
+        e.execute("track.new", &json!({"kind": "instrument", "name": "Synth"})).unwrap();
+        let t = e.session().tracks.last().unwrap().id;
+        let mut ops = OpsState::default();
+        sync_rtp_form(&mut ops, e.session(), vec![t], false);
+        e.execute("event.midi_rtp", &json!({"track": t.0, "velocity": -12})).unwrap();
+        sync_rtp_form(&mut ops, e.session(), vec![t], false);
+        assert_eq!(ops.rtp_velocity, -12);
+        e.execute("edit.undo", &json!({})).unwrap();
+        sync_rtp_form(&mut ops, e.session(), vec![t], false);
+        assert_eq!(ops.rtp_velocity, 0, "the form kept the undone value");
     }
 }
