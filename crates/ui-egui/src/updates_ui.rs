@@ -82,7 +82,7 @@ pub(crate) fn show(app: &mut SoundApp, ctx: &egui::Context) {
         (rt.manual_window_open, rt.status_message) = match rt.updater.status() {
             Status::Idle => (false, None),
             Status::Checking => (true, None),
-            Status::UpToDate => (true, Some(format!("SoundCraft {} is currently the newest version available.", env!("CARGO_PKG_VERSION")))),
+            Status::UpToDate => (true, Some(format!("aswat {} is currently the newest version available.", env!("CARGO_PKG_VERSION")))),
             Status::Failed(e) => (true, Some(format!("Could not check for updates:\n{e}"))),
         };
     }
